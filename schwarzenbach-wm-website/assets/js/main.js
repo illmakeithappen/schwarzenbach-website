@@ -4,16 +4,61 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Schwarzenbach WM Website loaded successfully');
-
     // Mobile Menu Toggle (if needed in future)
     initMobileMenu();
 
     // Smooth Scroll for Navigation Links
     initSmoothScroll();
 
-    // Add any additional initialization here
+    // Nav shrink on scroll
+    initNavShrink();
+
+    // Benefits accordion
+    initBenefitsAccordion();
 });
+
+/**
+ * Shrink navigation on scroll
+ */
+function initNavShrink() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 60) {
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+    });
+}
+
+/**
+ * Benefits accordion on index page
+ */
+function initBenefitsAccordion() {
+    const items = document.querySelectorAll('.benefits-accordion-item');
+    items.forEach(item => {
+        const trigger = item.querySelector('.benefits-accordion-trigger');
+        const content = item.querySelector('.benefits-accordion-content');
+        const icon = item.querySelector('.benefits-accordion-icon');
+
+        if (!trigger || !content) return;
+
+        trigger.addEventListener('click', () => {
+            const isOpen = item.classList.contains('active');
+            if (isOpen) {
+                item.classList.remove('active');
+                content.style.maxHeight = null;
+                icon.textContent = '+';
+            } else {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '+';
+            }
+        });
+    });
+}
 
 /**
  * Initialize mobile menu functionality
