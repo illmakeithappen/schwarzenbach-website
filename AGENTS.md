@@ -7,7 +7,7 @@
 - Do not commit generated/local files such as `node_modules`, `dist`, `.vercel`, or `.env.local`.
 
 ## Email-Driven Change Workflow
-1. One email = one task branch named `codex/<short-change-name>`.
+1. Use `development` for all local testing work and keep `main` as the deploy branch.
 2. Paste the email into Codex and ask for:
    - scope summary
    - acceptance criteria
@@ -20,7 +20,8 @@
    - Use the `vercel-deploy` skill when available.
    - Fallback command: `vercel --yes`
 6. Share the preview URL and a concise summary of changes/risks.
-7. Only deploy to production after explicit approval:
+7. Merge `development` into `main` only after approval.
+8. Only deploy to production after explicit approval:
    - `vercel --prod`
 
 ## Commit Rules
