@@ -47,9 +47,18 @@ const Intro = styled.p`
 `;
 
 const ButtonRow = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  flex-wrap: wrap;
+  max-width: 28rem;
+
+  @media (max-width: 580px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ActionButtonLink = styled(ButtonLink)`
+  width: 100%;
 `;
 
 const RightColumn = styled.div``;
@@ -80,8 +89,8 @@ export default function BenefitsAccordion() {
               <Heading>{t('benefits.heading')}</Heading>
               <Intro>{t('benefits.intro')}</Intro>
               <ButtonRow>
-                <ButtonLink to="/faq">{t('benefits.ctaFaq')}</ButtonLink>
-                <ButtonLink to="/#projekte">{t('benefits.ctaProjects')}</ButtonLink>
+                <ActionButtonLink to="/faq">{t('benefits.ctaFaq')}</ActionButtonLink>
+                <ActionButtonLink to="/#projekte">{t('benefits.ctaProjects')}</ActionButtonLink>
               </ButtonRow>
             </LeftColumn>
           </FadeIn>

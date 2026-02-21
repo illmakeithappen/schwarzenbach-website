@@ -86,6 +86,7 @@ export default function Home() {
         heading="Schwarzenbach Wealth Management"
         title={<>{heroTitleParts[0]}<br />{heroTitleParts[1]}</>}
         subtitle={t('hero.subtitle')}
+        subtitleBold
         bgImage="/images/hero-pexels.jpg"
       >
         <ButtonLink to="/#team" style={{ marginTop: '1.5rem' }}>

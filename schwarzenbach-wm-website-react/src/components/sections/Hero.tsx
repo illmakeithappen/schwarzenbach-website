@@ -53,24 +53,34 @@ const Title = styled(motion.h1)`
   font-weight: 600;
 `;
 
-const Subtitle = styled(motion.p)`
+const Subtitle = styled(motion.p)<{ $bold?: boolean }>`
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   color: ${({ theme }) => theme.colors.textMuted};
   max-width: 900px;
   margin: 0 auto;
   line-height: 1.8;
+  font-weight: ${({ $bold }) => ($bold ? 700 : 400)};
 `;
 
 interface HeroProps {
   heading?: string;
   title: React.ReactNode;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
+  subtitleBold?: boolean;
   compact?: boolean;
   bgImage?: string;
   children?: React.ReactNode;
 }
 
-export default function Hero({ heading, title, subtitle, compact, bgImage, children }: HeroProps) {
+export default function Hero({
+  heading,
+  title,
+  subtitle,
+  subtitleBold,
+  compact,
+  bgImage,
+  children,
+}: HeroProps) {
   return (
     <HeroSection $compact={compact} $bgImage={bgImage}>
       <Container>
@@ -93,6 +103,7 @@ export default function Hero({ heading, title, subtitle, compact, bgImage, child
           </Title>
           {subtitle && (
             <Subtitle
+              $bold={subtitleBold}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
